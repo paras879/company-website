@@ -15,7 +15,7 @@ function AnimatedSphere({ color, emissive }) {
     });
     return (
         <Float speed={2} rotationIntensity={0.4} floatIntensity={0.6}>
-            <Sphere ref={meshRef} args={[1.5, 48, 48]}>
+            <Sphere ref={meshRef} args={[1.5, 24, 24]}>
                 <MeshDistortMaterial
                     color={color}
                     distort={0.45}
@@ -28,7 +28,7 @@ function AnimatedSphere({ color, emissive }) {
                     opacity={0.82}
                 />
             </Sphere>
-            <Sphere args={[1.1, 24, 24]}>
+            <Sphere args={[1.1, 16, 16]}>
                 <meshStandardMaterial
                     color={color}
                     emissive={emissive}
@@ -152,7 +152,11 @@ function OrbitRing({ radius, tilt, speed, color, children }) {
 }
 
 function FloatingParticles({ color }) {
-    const count = 120;
+    const isMobile =
+        typeof window !== "undefined" &&
+        window.innerWidth < 768;
+
+    const count = isMobile ? 40 : 120;
     const ref = useRef();
     const [{ positions, colors }, setData] = useState({ positions: new Float32Array(0), colors: new Float32Array(0) });
 
@@ -204,7 +208,14 @@ function Scene3D({ accent, emissive }) {
             <pointLight ref={lightRef} color={accent} intensity={3} distance={12} />
             <pointLight position={[-4, -3, 2]} color={emissive} intensity={2} distance={10} />
             <directionalLight position={[5, 5, 5]} intensity={0.6} />
-            <Stars radius={80} depth={50} count={500} factor={4} saturation={1} fade speed={0.6} />
+            <Stars
+                radius={50}
+                depth={30}
+                count={150}
+                factor={2}
+                fade
+                speed={0.2}
+            />
             <FloatingParticles color={accent} />
             <OrbitRing radius={2.3} tilt={Math.PI / 4} speed={0.35} color={accent}>
                 <AIProcessor color={accent} />
@@ -223,10 +234,15 @@ function Scene3D({ accent, emissive }) {
 export default function HeroScene({ accent, emissive }) {
     return (
         <Canvas
+
             camera={{ position: [0, 0, 6], fov: 55 }}
-            gl={{ antialias: true, alpha: true }}
+            dpr={[1, 1.5]}
+            gl={{
+                antialias: false,
+                alpha: true,
+                powerPreference: "high-performance"
+            }}
             style={{ background: "transparent" }}
-            dpr={[1, 2]}
         >
             <Suspense fallback={null}>
                 <Scene3D accent={accent} emissive={emissive} />
@@ -234,8 +250,7 @@ export default function HeroScene({ accent, emissive }) {
             <OrbitControls
                 enableZoom={false}
                 enablePan={false}
-                autoRotate
-                autoRotateSpeed={0.4}
+                autoRotate={false}
                 maxPolarAngle={Math.PI / 1.6}
                 minPolarAngle={Math.PI / 3}
             />

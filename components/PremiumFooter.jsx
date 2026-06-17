@@ -113,7 +113,7 @@ export default function PremiumFooter() {
                         &copy; {new Date().getFullYear()} RecentureSoft. All rights reserved.
                     </p>
                     <div className="flex gap-6">
-                        <Link href="/privacy" className="text-slate-500 hover:text-slate-800 dark:text-gray-500 dark:hover:text-gray-300 text-sm font-light transition-colors">Privacy Policy</Link>
+                        <Link href="/privacy_policy" className="text-slate-500 hover:text-slate-800 dark:text-gray-500 dark:hover:text-gray-300 text-sm font-light transition-colors">Privacy Policy</Link>
                         <Link href="/terms" className="text-slate-500 hover:text-slate-800 dark:text-gray-500 dark:hover:text-gray-300 text-sm font-light transition-colors">Terms of Service</Link>
                     </div>
                 </div>

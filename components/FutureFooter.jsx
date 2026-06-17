@@ -311,8 +311,8 @@ export default function FutureFooter() {
 
                     <p className="order-2 md:order-1 font-medium tracking-wide">© 2026 Recenturesoft. All rights reserved.</p>
 
-                    <div className="flex flex-wrap justify-center gap-4 sm:gap-8 order-1 md:order-2">
-                        <Link href="#" className="hover:text-primary dark:hover:text-white transition-colors">Privacy Policy</Link>
+                    <div className="flex flex-wrap justify-center gap-10 sm:gap-8 order-1 md:order-2">
+                        <Link href="/privacy_policy" className="hover:text-primary dark:hover:text-white transition-colors">Privacy Policy</Link>
                         <Link href="#" className="hover:text-primary dark:hover:text-white transition-colors">Terms of Service</Link>
                         <Link href="#" className="hover:text-primary dark:hover:text-white transition-colors">Cookies</Link>
                     </div>
